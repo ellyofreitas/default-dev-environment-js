@@ -7,18 +7,18 @@
 ### Set Spacehsip
 
     Alter ZSH_THEME for:
-    ```shellscript
+    ```
         ZSH_THEME="spaceship"
     ```
     After restarting your terminal with:
-    ```shellscript
+    ```
         source ~/.zshrc
     ```
 
 ### Additional settings for spaceship
 
     In endfile .zshrc add:
-    ```shellscript
+    ```
         SPACESHIP_PROMPT_ORDER=(
         user          # Username section
         dir           # Current directory section
@@ -41,32 +41,32 @@
 ### Plugins zsh
 
     Open .zshrc file and below the line "### End of Zplugin's installer chunk", add:
-    ```shellscript
+    ```
         zplugin light zdharma/fast-syntax-highlighting
         zplugin light zsh-users/zsh-autosuggestions
         zplugin light zsh-users/zsh-completions
     ```
     And restart with:
-    ```shellscript
+    ```
         source ~/.zshrc
     ```
 
 ### Nvm setup
 
     After install nvm, please add lines of below to the correct profile file( ~/.bashrc, ~/.zshrc( if install zsh ) ):
-    ```shellscript
+    ```
         export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
     ```
     And restart with:
-    ```shellscript
+    ```
         source ~/.zshrc
     ```
 
 ### Yarn global setup
 
     After install yarn, if want use global, add in .zshrc file:
-    ```shellscript
+    ```
         export PATH="$HOME/.yarn/bin:$PATH"
     ```
 
