@@ -81,9 +81,9 @@ After install yarn, if want use global, add in .zshrc file:
     export PATH="$HOME/.yarn/bin:$PATH"
 ```
 
-### Tips
+## Tips
 
-## VsCode
+### VsCode
 
 Install the "Settings Sync" extension, install your extensions and configure the setup, after using the settings synchronization to save your configuration, other times.
 
