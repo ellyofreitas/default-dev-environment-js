@@ -1,10 +1,9 @@
 ## Default development environment for JavaScript
 
-Read the AFTERSCRIPT file for additional settings
+Support for linux based on ubuntu or debian (for now).
 
 ### Usage
 
-Support for linux based on ubuntu or debian (for now).
 For use clone this repository, change for inside folder, and run:
 
 ```
@@ -13,6 +12,10 @@ For use clone this repository, change for inside folder, and run:
 ```
 
 Enter your password and follow the steps.
+
+### After Install
+
+[Read the AFTERSCRIPT file for additional settings](../blob/master/AFTERSCRIPT.md)
 
 ### Options
 
