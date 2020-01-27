@@ -198,7 +198,6 @@ rootcheck () {
 main() {
     rootcheck
     # echo "Author: Ellyo Freitas"
-    # printf "Github: https://github.com/ellyofreitas\n\n"
     printf "Starting script...\n\n"
 
     config_terminal
@@ -210,8 +209,9 @@ main() {
     install_vscode
     install_insomnia
 
-    echo "Script finish."
+    printf "\nScript finish.\n"
     echo "Thanks for using!"
+    printf "If you liked it, leave a star on github: https://github.com/ellyofreitas/default-dev-environment-js\n"
 }
 
 
