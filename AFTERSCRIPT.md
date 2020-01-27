@@ -87,4 +87,4 @@ After install yarn, if want use global, add in .zshrc file:
 
 ### VsCode
 
-Install the "Settings Sync" extension, install your extensions and configure the setup, after using the settings synchronization to save your configuration, other times.
+Download the "Settings sync" extension. Install your extensions and configure the environment in vscode and use "Settings Synchronization" to save your configuration, for other times.
