@@ -15,7 +15,7 @@ Enter your password and follow the steps.
 
 ### After Install
 
-[Read the AFTERSCRIPT file for additional settings](../blob/master/AFTERSCRIPT.md)
+[Read the AFTERSCRIPT file for additional settings](../master/AFTERSCRIPT.md)
 
 ### Options
 
