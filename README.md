@@ -27,7 +27,7 @@ Enter your password and follow the steps.
 -   Zplugin
 -   Dracula theme for gnome terminal
 
-#### Enviroment
+#### Environment
 
 -   Nvm
 -   Yarn
