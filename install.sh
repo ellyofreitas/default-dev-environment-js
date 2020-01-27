@@ -183,7 +183,20 @@ install_vscode() {
 
 }
 
+# Check if we're root and re-execute if we're not.
+
+rootcheck () {
+    if [ $(id -u) != "0" ]
+    then
+        sudo "$0" "$@"  # Modified as suggested below.
+        exit $?
+    fi
+}
+
+#Main
+
 main() {
+    rootcheck
     # echo "Author: Ellyo Freitas"
     # printf "Github: https://github.com/ellyofreitas\n\n"
     printf "Starting script...\n\n"
@@ -194,8 +207,8 @@ main() {
     install_yarn
     install_docker
 
-    install_insomnia
     install_vscode
+    install_insomnia
 
     echo "Script finish."
     echo "Thanks for using!"
