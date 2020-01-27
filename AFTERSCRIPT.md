@@ -1,3 +1,5 @@
+## Steps after installing the script
+
 ### Install Font Fira Code
 
 Access: https://github.com/tonsky/FiraCode/releases
