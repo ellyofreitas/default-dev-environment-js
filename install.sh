@@ -88,8 +88,7 @@ config_terminal() {
 
     read -p "Config terminal? [s/n]: " terminal
 
-    if [ "$terminal" = terminal ]; then
-        install_inital_tools
+    if [ "$terminal" = "s" ]; then
         install_zsh
         set_zsh_how_default
         install_oh_my_zsh
@@ -164,7 +163,7 @@ install_insomnia() {
         if [ -f /usr/bin/insomnia ]; then
             echo "Insomnia already installed"
         else
-            echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" |  tee -a /etc/apt/sources.list.d/insomnia.list && wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc| apt-key add - && apt update && apt install insomnia -y
+            echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" |  tee -a /etc/apt/sources.list.d/insomnia.list && wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | apt-key add - && apt update && apt install insomnia -y
         fi
     fi
 }
@@ -199,6 +198,7 @@ main() {
     rootcheck
     # echo "Author: Ellyo Freitas"
     printf "Starting script...\n\n"
+    install_inital_tools
 
     config_terminal
 
