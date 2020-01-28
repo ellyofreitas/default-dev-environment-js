@@ -141,20 +141,27 @@ install_docker() {
             echo "Uninstall old versions"
             apt-get remove docker docker-engine docker.io  containerd runc -y
 
-            printf "What your distro? \n[1] Ubuntu (default)\n[2] Debian\nSelect: "
-            read distro_opt
-            [[ "$distro_opt" = "2" ]] && distro="debian" || distro="ubuntu"
+            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
+            read -p "Default[1]: " distro_opt
 
-            apt update && apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$distro $(lsb_release -cs) stable" && apt update && apt install docker-ce docker-ce-cli containerd.io -y
-
-            read -p "Set docker setup without sudo? [s/n]: " global_docker
-            if [ "$global_docker" = "s" ]; then
-                groupadd docker && usermod -aG docker $USER && newgrp docker
+            if [ "$distro_opt" = "2" ]; then
+                apt update && apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$distro $(lsb_release -cs) stable" && apt update && apt install docker-ce docker-ce-cli containerd.io -y
+            else
+                apt update && apt install docker.io -y
             fi
 
-            read -p "Enable Docker to start on boot? [s/n]: " boot_docker
-            if [ "$boot_docker" = "s" ]; then
-                systemctl enable docker
+            if [ -f /usr/bin/docker ]; then
+                read -p "Set docker setup without sudo? [s/n]: " global_docker
+                if [ "$global_docker" = "s" ]; then
+                    groupadd docker && usermod -aG docker $USER && newgrp docker
+                fi
+
+                read -p "Enable Docker to start on boot? [s/n]: " boot_docker
+                if [ "$boot_docker" = "s" ]; then
+                    systemctl enable docker
+                fi
+            else
+                echo "Docker was not installed correctly."
             fi
         fi
     fi
