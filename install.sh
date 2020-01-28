@@ -49,7 +49,7 @@ install_oh_my_zsh() {
         if [ -f $HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
             echo "Oh My Zsh already installed"
         else
-            sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && source ~/.zshrc
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
         fi
     fi
 }
@@ -60,7 +60,7 @@ install_spaceship() {
         if [ -f $HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme ]; then
             echo "Spaceship already installed"
         else
-            git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" && ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" && source ~/.zshrc
+            git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" && ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
         fi
     fi
 }
@@ -78,7 +78,7 @@ install_plugins() {
         if [ -f $HOME/.zplugin/bin/zplugin.zsh ]; then
             echo "Zplugin already installed"
         else
-            sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)" && source ~/.zshrc
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
         fi
 
     fi
@@ -90,11 +90,12 @@ config_terminal() {
 
     if [ "$terminal" = "s" ]; then
         install_zsh
-        set_zsh_how_default
         install_oh_my_zsh
         install_spaceship
         install_plugins
         install_gnome_dracula_theme
+        set_zsh_how_default
+        source ~/.zshrc
 
         printf "Terminal settings finished!\n\n"
 
@@ -140,7 +141,11 @@ install_docker() {
             echo "Uninstall old versions"
             apt-get remove docker docker-engine docker.io  containerd runc -y
 
-            apt update && apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" && apt update && apt install docker-ce docker-ce-cli containerd.io -y
+            printf "What your distro? \n[1] Ubuntu (default)\n[2] Debian\nSelect: "
+            read distro_opt
+            [[ "$distro_opt" = "2" ]] && distro="debian" || distro="ubuntu"
+
+            apt update && apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$distro $(lsb_release -cs) stable" && apt update && apt install docker-ce docker-ce-cli containerd.io -y
 
             read -p "Set docker setup without sudo? [s/n]: " global_docker
             if [ "$global_docker" = "s" ]; then
@@ -196,22 +201,23 @@ rootcheck () {
 
 main() {
     rootcheck
+    echo "deb [arch=amd64] https://download.docker.com/linux/$distro $(lsb_release -cs) stable"
     # echo "Author: Ellyo Freitas"
-    printf "Starting script...\n\n"
-    install_inital_tools
+    # printf "Starting script...\n\n"
+    # install_inital_tools
 
-    config_terminal
+    # config_terminal
 
-    install_nvm
-    install_yarn
-    install_docker
+    # install_nvm
+    # install_yarn
+    # install_docker
 
-    install_vscode
-    install_insomnia
+    # install_vscode
+    # install_insomnia
 
-    printf "\nScript finish.\n"
-    echo "Thanks for using!"
-    printf "If you liked it, leave a star on github: https://github.com/ellyofreitas/default-dev-environment-js\n"
+    # printf "\nScript finish.\n"
+    # echo "Thanks for using!"
+    # printf "If you liked it, leave a star on github: https://github.com/ellyofreitas/default-dev-environment-js\n"
 }
 
 
