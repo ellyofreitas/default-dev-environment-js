@@ -201,23 +201,22 @@ rootcheck () {
 
 main() {
     rootcheck
-    echo "deb [arch=amd64] https://download.docker.com/linux/$distro $(lsb_release -cs) stable"
     # echo "Author: Ellyo Freitas"
-    # printf "Starting script...\n\n"
-    # install_inital_tools
+    printf "Starting script...\n\n"
+    install_inital_tools
 
-    # config_terminal
+    config_terminal
 
-    # install_nvm
-    # install_yarn
-    # install_docker
+    install_nvm
+    install_yarn
+    install_docker
 
-    # install_vscode
-    # install_insomnia
+    install_vscode
+    install_insomnia
 
-    # printf "\nScript finish.\n"
-    # echo "Thanks for using!"
-    # printf "If you liked it, leave a star on github: https://github.com/ellyofreitas/default-dev-environment-js\n"
+    printf "\nScript finish.\n"
+    echo "Thanks for using!"
+    printf "If you liked it, leave a star on github: https://github.com/ellyofreitas/default-dev-environment-js\n"
 }
 
 
