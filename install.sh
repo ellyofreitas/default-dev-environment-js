@@ -45,7 +45,7 @@ set_zsh_how_default() {
 }
 
 install_oh_my_zsh() {
-    read -p "Install Oh My Zsh? [s/n]: " omz
+    read -p "Install Oh My Zsh? Please run 'exit' if the script is interrupted [s/n]: " omz
     if [ "$omz" = "s" ]; then
         if [ -f $SUDO_HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
             echo "Oh My Zsh already installed"
@@ -154,7 +154,7 @@ install_docker() {
             if [ -f /usr/bin/docker ]; then
                 read -p "Configure the docker without sudo? Please run 'exit' if the script is interrupted [s/n]: " global_docker
                 if [ "$global_docker" = "s" ]; then
-                    groupadd docker || usermod -aG docker $USER || newgrp docker
+                    groupadd docker ; usermod -aG docker $SUDO_USER ; newgrp docker
                 fi
 
                 read -p "Enable Docker to start on boot? [s/n]: " boot_docker
@@ -221,7 +221,7 @@ main() {
     install_vscode
     install_insomnia
 
-    config_terminal
+    # config_terminal
 
     printf "\nScript finish.\n"
     echo "Thanks for using!"
