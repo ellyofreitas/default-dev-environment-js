@@ -197,7 +197,14 @@ uninstall_docker() {
         if [ -f /usr/bin/docker ]; then
             echo "Docker not installed"
         else
-            apt remove docker docker-engine docker.io  containerd runc -y
+            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
+            read -p "Default[1]: " distro_opt
+
+            if [ "$distro_opt" = "2" ]; then
+                apt remove docker docker-engine docker.io  containerd runc -y
+            else
+                apt remove -y docker.io
+            fi
             echo "Ok!"
         fi
     fi
