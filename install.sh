@@ -168,7 +168,7 @@ install_docker() {
             echo "Uninstall old versions"
             apt remove docker docker-engine docker.io  containerd runc -y
 
-            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
+            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n"
             read -p "Default[1]: " distro_opt
 
             if [ "$distro_opt" = "2" ]; then
@@ -200,7 +200,7 @@ uninstall_docker() {
     read -p "Uninstall docker? [s/n]: " un_docker
     if [ "$un_docker" = "s" ]; then
         if [ -f /usr/bin/docker ]; then
-            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
+            printf "What your distro? \n[1] Ubuntu\n[2] Debian\n"
             read -p "Default[1]: " distro_opt
 
             if [ "$distro_opt" = "2" ]; then
