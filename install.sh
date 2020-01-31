@@ -126,7 +126,8 @@ uninstall_nvm() {
     read -p "Uninstall nvm? [s/n]: " un_nvm
     if [ "$un_nvm" = "s" ]; then
         if [ -f $SUDO_HOME/.nvm/nvm.sh ]; then
-            rm -r $SUDO_HOME/.nvm
+            rm -rf $SUDO_HOME/.nvm
+            rm -rf /root/.nvm
             echo "Ok!"
         else
             echo "Nvm not installed"
