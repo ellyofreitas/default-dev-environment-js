@@ -295,7 +295,7 @@ rootcheck () {
 main() {
     rootcheck
     # echo "Author: Ellyo Freitas"
-    echo "Welcome '$USER' how '$SUDO_USER' in home '$SUDO_HOME'"
+    # echo "Welcome '$USER' how '$SUDO_USER' in home '$SUDO_HOME'"
 
     printf "Starting script...\n"
     if [ "$opt_command" = "uninstall" ]; then

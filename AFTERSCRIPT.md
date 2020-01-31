@@ -69,7 +69,7 @@ After install nvm, please add lines of below to the correct profile file( ~/.bas
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
-And restart with:
+And restart with (if you are not using zsh, switch ~/.zshrc to ~/bashrc):
 
 ```
     source ~/.zshrc
@@ -90,7 +90,7 @@ For use, run:
 
 ### Yarn global setup
 
-After install yarn, if want use global, add in .zshrc file:
+After install yarn, if want use global, add in ~/.zshrc or ~/.bashrc file:
 
 ```
     export PATH="$HOME/.yarn/bin:$PATH"
