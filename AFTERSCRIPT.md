@@ -62,7 +62,7 @@ And restart with:
 
 ### Nvm setup
 
-After install nvm, please add lines of below to the correct profile file( ~/.bashrc, ~/.zshrc( if install zsh ) ):
+After install nvm, if not have in your ~/.bashrc, ~/.zshrc, please add lines of below to the correct profile file( ~/.bashrc, ~/.zshrc( if install zsh ) ):
 
 ```
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

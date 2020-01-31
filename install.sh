@@ -3,6 +3,7 @@
 # Var globals
 opt_command=$1
 SUDO_HOME=/home/$SUDO_USER
+HOME=$SUDO_HOME
 
 # Install Terminal
 install_inital_tools() {
@@ -115,7 +116,7 @@ install_nvm() {
         if [ -f $SUDO_HOME/.nvm/nvm.sh ]; then
             echo "Nvm already installed"
         else
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash $SUDO_HOME
 
             echo "Please finish the setup, read the AFTERSCRIPT.md"
         fi
