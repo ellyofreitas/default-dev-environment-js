@@ -22,7 +22,7 @@ Enter your password and follow the steps.
 To uninstall some applications, run:
 
 ```
-    ./install uninstall
+    sudo ./install uninstall
 ```
 
 ### Features
