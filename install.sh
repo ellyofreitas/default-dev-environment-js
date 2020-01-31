@@ -116,7 +116,7 @@ install_nvm() {
         if [ -f $SUDO_HOME/.nvm/nvm.sh ]; then
             echo "Nvm already installed"
         else
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash $SUDO_HOME
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash && chown -R $SUDO_USER $SUDO_HOME/.nvm
 
             echo "Please finish the setup, read the AFTERSCRIPT.md"
         fi
