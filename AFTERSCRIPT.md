@@ -75,6 +75,19 @@ And restart with:
     source ~/.zshrc
 ```
 
+Verify if nvm is installed:
+
+```
+    nvm --version
+```
+
+For use, run:
+
+```
+    nvm install 13 // or version especified
+    nvm use 13 // or version especified
+```
+
 ### Yarn global setup
 
 After install yarn, if want use global, add in .zshrc file:
