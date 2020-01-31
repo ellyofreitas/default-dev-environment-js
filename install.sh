@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# Var globals
 opt_command=$1
+SUDO_HOME=/home/$SUDO_USER
+
 # Install Terminal
 install_inital_tools() {
     echo "Installing tools necessary..."
@@ -46,7 +49,7 @@ set_zsh_how_default() {
 install_oh_my_zsh() {
     read -p "Install Oh My Zsh? Please run 'exit' if the script is interrupted [s/n]: " omz
     if [ "$omz" = "s" ]; then
-        if [ -f $HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
+        if [ -f $SUDO_HOME/.oh-my-zsh/oh-my-zsh.sh ]; then
             echo "Oh My Zsh already installed"
         else
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -57,7 +60,7 @@ install_oh_my_zsh() {
 install_spaceship() {
     read -p "Install spaceship? [s/n]: " spaceship
     if [ "$spaceship" = "s" ]; then
-        if [ -f $HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme ]; then
+        if [ -f $SUDO_HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme ]; then
             echo "Spaceship already installed"
         else
             git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" && ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
@@ -75,7 +78,7 @@ install_gnome_dracula_theme() {
 install_plugins() {
     read -p "Install plugins? [s/n]: " plugins
     if [ "$plugins" = "s" ]; then
-        if [ -f $HOME/.zplugin/bin/zplugin.zsh ]; then
+        if [ -f $SUDO_HOME/.zplugin/bin/zplugin.zsh ]; then
             echo "Zplugin already installed"
         else
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
@@ -109,7 +112,7 @@ config_terminal() {
 install_nvm() {
     read -p "Install nvm? [s/n]: " nvm
     if [ "$nvm" = "s" ]; then
-        if [ -f $HOME/.nvm/nvm.sh ]; then
+        if [ -f $SUDO_HOME/.nvm/nvm.sh ]; then
             echo "Nvm already installed"
         else
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
@@ -122,8 +125,8 @@ install_nvm() {
 uninstall_nvm() {
     read -p "Uninstall nvm? [s/n]: " un_nvm
     if [ "$un_nvm" = "s" ]; then
-        if [ -f $HOME/.nvm/nvm.sh ]; then
-            rm -r $HOME/.nvm
+        if [ -f $SUDO_HOME/.nvm/nvm.sh ]; then
+            rm -r $SUDO_HOME/.nvm
             echo "Ok!"
         else
             echo "Nvm not installed"
@@ -292,8 +295,8 @@ rootcheck () {
 main() {
     rootcheck
     # echo "Author: Ellyo Freitas"
-    echo "Welcome $USER"
-    echo "This is sudo $SUDO_USER"
+    echo "Welcome '$USER' how '$SUDO_USER' in home '$SUDO_HOME'"
+
     printf "Starting script...\n"
     if [ "$opt_command" = "uninstall" ]; then
         uninstall_apps
