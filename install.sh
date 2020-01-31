@@ -148,7 +148,7 @@ uninstall_yarn() {
     read -p "Uninstall yarn? [s/n]: " un_yarn
     if [ "$un_yarn" = "s" ]; then
         if [ -f /usr/bin/yarn ]; then
-            apt remove -y yarn
+            apt remove -y yarn && rm -rf /usr/bin/yarn
             echo "Ok!"
         else
             echo "Yarn not installed"
@@ -163,7 +163,7 @@ install_docker() {
             echo "Docker already installed"
         else
             echo "Uninstall old versions"
-            uninstall_docker
+            apt remove docker docker-engine docker.io  containerd runc -y
 
             printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
             read -p "Default[1]: " distro_opt
@@ -177,7 +177,9 @@ install_docker() {
             if [ -f /usr/bin/docker ]; then
                 read -p "Configure the docker without sudo? Please run 'exit' if the script is interrupted [s/n]: " global_docker
                 if [ "$global_docker" = "s" ]; then
-                    groupadd docker ; usermod -aG docker $USER ; newgrp docker
+                    groupadd docker
+                    usermod -aG docker $USER
+                    newgrp docker
                 fi
 
                 read -p "Enable Docker to start on boot? [s/n]: " boot_docker
@@ -290,6 +292,8 @@ rootcheck () {
 main() {
     rootcheck
     # echo "Author: Ellyo Freitas"
+    echo "Welcome $USER"
+    echo "This is sudo $SUDO_USER"
     printf "Starting script...\n"
     if [ "$opt_command" = "uninstall" ]; then
         uninstall_apps
