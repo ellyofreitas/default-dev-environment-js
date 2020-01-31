@@ -1,7 +1,7 @@
 #!/bin/bash
 
+opt_command=$1
 # Install Terminal
-
 install_inital_tools() {
     echo "Installing tools necessary..."
     printf "Installing curl: "
@@ -119,6 +119,18 @@ install_nvm() {
     fi
 }
 
+uninstall_nvm() {
+    read -p "Uninstall nvm? [s/n]: " un_nvm
+    if [ "$un_nvm" = "s" ]; then
+        if [ -f $HOME/.nvm/nvm.sh ]; then
+            echo "Nvm not installed"
+        else
+            rm -r $HOME/.nvm
+            echo "Ok!"
+        fi
+    fi
+}
+
 install_yarn() {
     read -p "Install yarn? [s/n]: " yarn
     if [ "$yarn" = "s" ]; then
@@ -132,6 +144,18 @@ install_yarn() {
     fi
 }
 
+uninstall_yarn() {
+    read -p "Uninstall yarn? [s/n]: " un_yarn
+    if [ "$un_yarn" = "s" ]; then
+        if [ -f /usr/bin/yarn ]; then
+            echo "Yarn not installed"
+        else
+            apt remove -y yarn
+            echo "Ok!"
+        fi
+    fi
+}
+
 install_docker() {
     read -p "Install docker? [s/n]: " docker
     if [ "$docker" = "s" ]; then
@@ -139,7 +163,7 @@ install_docker() {
             echo "Docker already installed"
         else
             echo "Uninstall old versions"
-            apt-get remove docker docker-engine docker.io  containerd runc -y
+            uninstall_docker
 
             printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
             read -p "Default[1]: " distro_opt
@@ -167,6 +191,18 @@ install_docker() {
     fi
 }
 
+uninstall_docker() {
+    read -p "Uninstall docker? [s/n]: " un_docker
+    if [ "$un_docker" = "s" ]; then
+        if [ -f /usr/bin/docker ]; then
+            echo "Docker not installed"
+        else
+            apt remove docker docker-engine docker.io  containerd runc -y
+            echo "Ok!"
+        fi
+    fi
+}
+
 # Install tools
 
 install_insomnia() {
@@ -176,6 +212,18 @@ install_insomnia() {
             echo "Insomnia already installed"
         else
             echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" |  tee -a /etc/apt/sources.list.d/insomnia.list && wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | apt-key add - && apt update && apt install insomnia -y
+        fi
+    fi
+}
+
+uninstall_insomnia() {
+    read -p "Uninstall Insomnia? [s/n]: " un_insomnia
+    if [ "$un_insomnia" = "s" ]; then
+        if [ -f /usr/bin/insomnia ]; then
+            echo "Insomnia not installed"
+        else
+            apt remove -y insomnia
+            echo "Ok!"
         fi
     fi
 }
@@ -194,13 +242,39 @@ install_vscode() {
 
 }
 
+uninstall_vscode() {
+    read -p "Uninstall VsCode? [s/n]: " un_vscode
+    if [ "$un_vscode" = "s" ]; then
+        if [ -f /usr/bin/code ]; then
+            echo "VsCode not installed"
+        else
+            apt remove -y code
+            echo "Ok!"
+        fi
+    fi
+}
+
+# Uninstall
+
+uninstall_apps() {
+    read -p "Uninstall applications? [s/n]: " uninstall
+    if [ "$uninstall" = "s" ]; then
+        uninstall_nvm
+        uninstall_yarn
+        uninstall_docker
+        uninstall_vscode
+        uninstall_insomnia
+    fi
+}
+
 # Check if we're root and re-execute if we're not.
 
 rootcheck () {
-    if [ $(id -u) != "0" ]
-    then
-        sudo "$0" "$@"  # Modified as suggested below.
-        exit $?
+    if [ $(id -u) != "0" ]; then
+        echo "Please run script with sudo"
+        exit
+        # sudo "$0" "$@"  # Modified as suggested below.
+        # exit $?
     fi
 }
 
@@ -208,17 +282,20 @@ rootcheck () {
 
 main() {
     rootcheck
-    # echo $HOME
     # echo "Author: Ellyo Freitas"
-    printf "Starting script...\n\n"
-    install_inital_tools
+    printf "Starting script...\n"
+    if [ "$opt_command" = "uninstall" ]; then
+        uninstall_apps
+    else
+        install_inital_tools
 
-    install_nvm
-    install_yarn
-    install_docker
+        install_nvm
+        install_yarn
+        install_docker
 
-    install_vscode
-    install_insomnia
+        install_vscode
+        install_insomnia
+    fi
 
     # config_terminal
 
