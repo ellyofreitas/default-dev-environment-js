@@ -123,10 +123,10 @@ uninstall_nvm() {
     read -p "Uninstall nvm? [s/n]: " un_nvm
     if [ "$un_nvm" = "s" ]; then
         if [ -f $HOME/.nvm/nvm.sh ]; then
-            echo "Nvm not installed"
-        else
             rm -r $HOME/.nvm
             echo "Ok!"
+        else
+            echo "Nvm not installed"
         fi
     fi
 }
@@ -148,10 +148,10 @@ uninstall_yarn() {
     read -p "Uninstall yarn? [s/n]: " un_yarn
     if [ "$un_yarn" = "s" ]; then
         if [ -f /usr/bin/yarn ]; then
-            echo "Yarn not installed"
-        else
             apt remove -y yarn
             echo "Ok!"
+        else
+            echo "Yarn not installed"
         fi
     fi
 }
@@ -195,8 +195,6 @@ uninstall_docker() {
     read -p "Uninstall docker? [s/n]: " un_docker
     if [ "$un_docker" = "s" ]; then
         if [ -f /usr/bin/docker ]; then
-            echo "Docker not installed"
-        else
             printf "What your distro? \n[1] Ubuntu\n[2] Debian\n: "
             read -p "Default[1]: " distro_opt
 
@@ -206,6 +204,8 @@ uninstall_docker() {
                 apt remove -y docker.io
             fi
             echo "Ok!"
+        else
+            echo "Docker not installed"
         fi
     fi
 }
@@ -227,10 +227,10 @@ uninstall_insomnia() {
     read -p "Uninstall Insomnia? [s/n]: " un_insomnia
     if [ "$un_insomnia" = "s" ]; then
         if [ -f /usr/bin/insomnia ]; then
-            echo "Insomnia not installed"
-        else
             apt remove -y insomnia
             echo "Ok!"
+        else
+            echo "Insomnia not installed"
         fi
     fi
 }
@@ -253,10 +253,10 @@ uninstall_vscode() {
     read -p "Uninstall VsCode? [s/n]: " un_vscode
     if [ "$un_vscode" = "s" ]; then
         if [ -f /usr/bin/code ]; then
-            echo "VsCode not installed"
-        else
             apt remove -y code
             echo "Ok!"
+        else
+            echo "VsCode not installed"
         fi
     fi
 }
