@@ -8,7 +8,7 @@ For use clone this repository, change for inside folder, and run:
 
 ```
     chmod +x ./install
-    ./install
+    sudo ./install
 ```
 
 Enter your password and follow the steps.
@@ -17,15 +17,15 @@ Enter your password and follow the steps.
 
 [Read the AFTERSCRIPT file for additional settings](../master/AFTERSCRIPT.md)
 
-### Options
+### Uninstall
 
-#### Terminal
+To uninstall some applications, run:
 
--   Zsh
--   Oh My Zsh
--   Spaceship theme with dracula
--   Zplugin
--   Dracula theme for gnome terminal
+```
+    ./install uninstall
+```
+
+### Features
 
 #### Environment
 
@@ -37,6 +37,14 @@ Enter your password and follow the steps.
 
 -   VsCode
 -   Insomnia
+
+#### Terminal (in working)
+
+-   Zsh
+-   Oh My Zsh
+-   Spaceship theme with dracula
+-   Zplugin
+-   Dracula theme for gnome terminal
 
 ### Help or suggestions
 
