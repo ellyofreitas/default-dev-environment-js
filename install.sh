@@ -182,7 +182,6 @@ install_docker() {
                 if [ "$global_docker" = "s" ]; then
                     groupadd docker
                     usermod -aG docker $USER
-                    newgrp docker
                 fi
 
                 read -p "Enable Docker to start on boot? [s/n]: " boot_docker

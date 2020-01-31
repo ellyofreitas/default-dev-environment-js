@@ -96,6 +96,10 @@ After install yarn, if want use global, add in .zshrc file:
     export PATH="$HOME/.yarn/bin:$PATH"
 ```
 
+### Docker without 'sudo'
+
+Reset your user session to take effect
+
 ## Tips
 
 ### VsCode
